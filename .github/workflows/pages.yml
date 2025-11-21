@@ -27,22 +27,11 @@ jobs:
         run: npm run build
         working-directory: ./miguel
 
-      - name: Inspect build output
-        run: ls -la ./miguel/dist || ls -la ./miguel/public || true
-
       - name: Prepare build output and add .nojekyll
         run: |
-          OUT_DIR=./miguel/dist
-          if [ ! -d "$OUT_DIR" ]; then
-            OUT_DIR=./miguel/public
-          fi
-          if [ -d "$OUT_DIR" ]; then
-            touch "$OUT_DIR/.nojekyll"
-            echo "Publishing $OUT_DIR"
-            ls -la "$OUT_DIR"
-          else
-            echo "Error: build output directory not found. Update workflow to use the correct output path." && exit 1
-          fi
+          touch ./miguel/dist/.nojekyll
+          echo "Publishing ./miguel/dist"
+          ls -la ./miguel/dist
 
       - name: Configure Pages
         uses: actions/configure-pages@v3
