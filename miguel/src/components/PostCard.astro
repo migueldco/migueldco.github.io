@@ -1,0 +1,29 @@
+---
+type Props = {
+	ref: string;
+	title: string;
+	description: string;
+};
+
+const {ref, title, description} = Astro.props;
+---
+<div class="card">
+	<h3><a href={`/blog/${ref}`}>{title}</a></h3>
+	{description}
+</div>
+
+<style>
+	.card {
+		border: solid;
+		border-radius: 1em;
+		border-color: black;
+		border-width: 0.2em;
+	}
+	h3 {
+		margin: 0;
+		padding-bottom: 0.5em;
+	}
+	a {
+		color: var(--fg);
+	}
+</style>

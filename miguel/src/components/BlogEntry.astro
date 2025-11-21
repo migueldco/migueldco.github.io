@@ -1,0 +1,32 @@
+---
+type Props = {
+	title: string;
+	author: string;
+	date: Date;
+	tags: string[];
+};
+
+const { title, date } = Astro.props;
+---
+
+<main>
+	<h1>{title}</h1>
+	<h3>{date.toDateString()}</h3>
+	<div class="content">
+		<slot />
+	</div>
+</main>
+
+
+<style>
+	main {
+		justify-content: start;
+		width: 100%;
+		padding-left: 20%;
+		padding-right: 20%;
+	}
+	.content {
+		justify-content: start;
+		width: 100%;
+	}
+</style>

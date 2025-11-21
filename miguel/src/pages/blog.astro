@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection('blog');
+posts.sort((a, b) => { return parseInt(a.data.date.valueOf()) - parseInt(b.data.date.valueOf()); });
+---
+
+<Layout>
+	<main>
+		<p>
+			Welcome to my blog, where I post about math and computer science.
+		</p>
+		<div class="posts-list">
+			{posts.map(post => <PostCard ref={post.id} title={post.data.title} description={post.data.description}></PostCard>)}
+		</div>
+	</main>
+</Layout>
+
+<style>
+	main {
+		width: 100vw;
+		padding-left: 2em;
+		padding-right: 2em;
+		justify-content: center;
+	}
+	.posts-list {
+		display: grid;
+		grid-template-columns: auto auto auto;
+	}
+</style>

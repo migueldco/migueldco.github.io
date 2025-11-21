@@ -1,0 +1,34 @@
+---
+import NavbarLink from "../components/NavbarLink.astro";
+---
+
+<header>
+	<nav>
+		<div class="navbar-item site-title">Miguel's website</div>
+		<div class="navbar-item">
+			<NavbarLink href="/">Home</NavbarLink>
+			<NavbarLink href="/blog">Blog</NavbarLink>
+			<NavbarLink href="/projects">Projects</NavbarLink>
+			<NavbarLink href="/about">About Me</NavbarLink>
+		</div>
+		<div class="navbar-item">
+		</div>
+	</nav>
+</header>
+
+<style>
+	nav {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.navbar-item {
+		justify-content: center;
+		align-content: center;
+		padding: 0.5em;
+	}
+	.site-title {
+		font-size: 1.5em;
+	}
+</style>
