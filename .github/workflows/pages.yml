@@ -1,0 +1,56 @@
+name: Deploy Astro to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./miguel
+
+      - name: Build site
+        run: npm run build
+        working-directory: ./miguel
+
+      - name: Inspect build output
+        run: ls -la ./miguel/dist || ls -la ./miguel/public || true
+
+      - name: Prepare build output and add .nojekyll
+        run: |
+          OUT_DIR=./miguel/dist
+          if [ ! -d "$OUT_DIR" ]; then
+            OUT_DIR=./miguel/public
+          fi
+          if [ -d "$OUT_DIR" ]; then
+            touch "$OUT_DIR/.nojekyll"
+            echo "Publishing $OUT_DIR"
+            ls -la "$OUT_DIR"
+          else
+            echo "Error: build output directory not found. Update workflow to use the correct output path." && exit 1
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./miguel/dist
+
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v1
