@@ -86,4 +86,9 @@ const { title, description, tags, link, image } = Astro.props;
         color: var(--color-text-muted);
         border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    @media (max-width: 600px) {
+        .card-content {
+            padding: 1rem;
+        }
+    }
 </style>
