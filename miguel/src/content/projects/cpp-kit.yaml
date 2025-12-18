@@ -1,0 +1,9 @@
+title: "Competitive programming library"
+description: "A library of algorithms and data structures implemented in C++ for competitive programming."
+tags:
+  - "cpp"
+  - "algorithms"
+  - "data-structures"
+  - "competitive-programming"
+link: "https://github.com/migueldco/cpp-kit"
+featured: true

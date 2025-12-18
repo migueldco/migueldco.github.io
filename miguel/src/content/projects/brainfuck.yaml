@@ -1,0 +1,8 @@
+title: "Simple JIT compiler"
+description: "A simple Just-In-Time compiler implemented from scratch in C++ for the 'brainfuck' language."
+tags:
+  - "cpp"
+  - "compiler"
+  - "jit"
+link: "https://github.com/migueldco/brainfuck-jit"
+featured: true
