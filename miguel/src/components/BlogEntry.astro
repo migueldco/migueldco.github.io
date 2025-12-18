@@ -111,10 +111,32 @@ const { title, date, tags } = Astro.props;
 	.content :global(img) {
 		border-radius: var(--radius-md);
 		margin: 2rem 0;
+		max-width: 100%;
+		height: auto;
 	}
 
 	/* MathJax/Latex scaling if needed */
-	.content :global(.MathJax) {
+	/* MathJax/Latex scaling if needed */
+	.content :global(mjx-container[display="true"]) {
 		font-size: 1.1em !important;
+		overflow-x: auto;
+		overflow-y: hidden;
+		max-width: 100%;
+		display: block !important;
+	}
+
+	/* Code blocks */
+	.content :global(pre) {
+		max-width: 100%;
+		overflow-x: auto;
+		white-space: pre-wrap; /* Wrap code if desired, or keep as pre for scroll */
+		word-wrap: break-word; /* Fallback */
+	}
+
+	/* Tables */
+	.content :global(table) {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
 	}
 </style>

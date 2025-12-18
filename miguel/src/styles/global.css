@@ -205,3 +205,27 @@ code {
 .animate-fade-in {
   animation: fadeIn 0.6s ease forwards;
 }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .container {
+    padding: 0 0.5rem;
+    /* Minimize padding on very small screens */
+  }
+
+  h1 {
+    font-size: 2rem !important;
+    word-break: break-word;
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
