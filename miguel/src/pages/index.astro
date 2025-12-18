@@ -8,6 +8,9 @@ const featuredProjects = await getCollection(
 	"projects",
 	(item) => item.data.featured,
 );
+featuredProjects.sort((a, b) => {
+	return a.data.title.localeCompare(b.data.title);
+});
 ---
 
 <Layout>
