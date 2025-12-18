@@ -1,32 +1,94 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import PostCard from "../components/PostCard.astro";
 import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
 
-const posts = await getCollection('blog');
-posts.sort((a, b) => { return parseInt(a.data.date.valueOf()) - parseInt(b.data.date.valueOf()); });
+const posts = (await getCollection("blog")).sort(
+	(a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf(),
+);
 ---
 
 <Layout>
-	<main>
-		<p>
-			Welcome to my blog, where I post about math and computer science.
+	<section class="section container">
+		<h1 class="text-gradient">Blog</h1>
+		<p class="intro">
+			Where I post about math, computer science, CTFs, and more. Usually
+			more technical stuff.
 		</p>
+
 		<div class="posts-list">
-			{posts.map(post => <PostCard ref={post.id} title={post.data.title} description={post.data.description}></PostCard>)}
+			{
+				posts.map((post) => (
+					<article class="post-item glass">
+						<span class="post-date">{post.data.date}</span>
+						<h2>
+							<a href={`/blog/${post.id}`}>{post.data.title}</a>
+						</h2>
+						<p>{post.data.description}</p>
+						<a href={`/blog/${post.id}`} class="read-more">
+							Read article &rarr;
+						</a>
+					</article>
+				))
+			}
 		</div>
-	</main>
+	</section>
 </Layout>
 
 <style>
-	main {
-		width: 100vw;
-		padding-left: 2em;
-		padding-right: 2em;
-		justify-content: center;
+	.intro {
+		margin-bottom: 3rem;
 	}
+
 	.posts-list {
-		display: grid;
-		grid-template-columns: auto auto auto;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		max-width: 800px;
+	}
+
+	.post-item {
+		padding: 2rem;
+		border-radius: var(--radius-md);
+		transition:
+			transform 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.post-item:hover {
+		transform: translateX(5px);
+		border-color: var(--color-primary);
+	}
+
+	.post-date {
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--color-primary);
+		margin-bottom: 0.5rem;
+		display: block;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+		margin-bottom: 0.75rem;
+	}
+
+	h2 a {
+		color: #fff;
+	}
+
+	h2 a:hover {
+		color: var(--color-primary);
+	}
+
+	.read-more {
+		display: inline-block;
+		margin-top: 1rem;
+		font-weight: 600;
+		font-size: 0.9rem;
+		color: #fff;
+	}
+
+	.read-more:hover {
+		text-decoration: underline;
 	}
 </style>

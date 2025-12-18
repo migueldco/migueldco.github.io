@@ -1,7 +1,60 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+// In a real app, this would come from a CMS or content collection
+const allProjects = [
+	{
+		title: "Project 1",
+		description: "Description of Project 1",
+		tags: ["Tag 1", "Tag 2", "Tag 3"],
+		link: "#",
+	},
+	{
+		title: "Project 2",
+		description: "Description of Project 2",
+		tags: ["Tag 1", "Tag 2", "Tag 3"],
+		link: "#",
+	},
+	{
+		title: "Project 3",
+		description: "Description of Project 3",
+		tags: ["Tag 1", "Tag 2", "Tag 3"],
+		link: "#",
+	},
+	{
+		title: "Project 4",
+		description: "Description of Project 4",
+		tags: ["Tag 1", "Tag 2", "Tag 3"],
+		link: "#",
+	},
+];
 ---
 
 <Layout>
-	My projects
+	<section class="section container">
+		<h1 class="text-gradient">Projects</h1>
+		<p class="intro">Here are some of my personal projects.</p>
+
+		<div class="projects-grid">
+			{allProjects.map((project) => <ProjectCard {...project} />)}
+		</div>
+	</section>
 </Layout>
+
+<style>
+	h1 {
+		margin-bottom: 0.5rem;
+	}
+
+	.intro {
+		margin-bottom: 3rem;
+		max-width: 600px;
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+</style>

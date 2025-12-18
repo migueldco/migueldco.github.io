@@ -2,33 +2,56 @@
 import NavbarLink from "../components/NavbarLink.astro";
 ---
 
-<header>
-	<nav>
-		<div class="navbar-item site-title">Miguel's website</div>
-		<div class="navbar-item">
+<header class="glass">
+	<nav class="container">
+		<a href="/" class="site-title">miguel<span class="dot">.</span></a>
+
+		<div class="nav-links">
 			<NavbarLink href="/">Home</NavbarLink>
-			<NavbarLink href="/blog">Blog</NavbarLink>
+			<NavbarLink href="/about">About</NavbarLink>
 			<NavbarLink href="/projects">Projects</NavbarLink>
-			<NavbarLink href="/about">About Me</NavbarLink>
-		</div>
-		<div class="navbar-item">
+			<NavbarLink href="/blog">Blog</NavbarLink>
 		</div>
 	</nav>
 </header>
 
 <style>
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 100;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
 	nav {
 		display: flex;
-		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+		height: var(--nav-height);
 	}
-	.navbar-item {
-		justify-content: center;
-		align-content: center;
-		padding: 0.5em;
-	}
+
 	.site-title {
-		font-size: 1.5em;
+		font-size: 1.5rem;
+		font-weight: 700;
+		letter-spacing: -0.05em;
+		color: #fff;
+	}
+
+	.dot {
+		color: var(--color-primary);
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+	}
+
+	/* Responsive */
+	@media (max-width: 600px) {
+		.nav-links {
+			gap: 1rem;
+		}
 	}
 </style>

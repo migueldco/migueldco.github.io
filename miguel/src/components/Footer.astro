@@ -1,0 +1,56 @@
+<footer class="section">
+    <div class="container text-center">
+        <p class="copyright">
+            &copy; {new Date().getFullYear()} Miguel. Built with Astro.
+        </p>
+        <div class="social-links">
+            <a
+                href="https://github.com/migueldco"
+                target="_blank"
+                rel="noopener noreferrer">GitHub</a
+            >
+            <a
+                href="https://br.linkedin.com/in/miguel-de-carvalho"
+                target="_blank"
+                rel="noopener noreferrer">LinkedIn</a
+            >
+            <a href="mailto:migueldco14@gmail.com">Email</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        border-top: 1px solid var(--color-border);
+        background: var(--color-bg-offset);
+        margin-top: auto; /* Push to bottom if content is short */
+        padding: 3rem 0;
+    }
+
+    .text-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .social-links a {
+        color: var(--color-text-dim);
+        font-size: 0.9rem;
+    }
+
+    .social-links a:hover {
+        color: var(--color-primary);
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+        color: var(--color-text-dim);
+        margin: 0;
+    }
+</style>

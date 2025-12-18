@@ -1,7 +1,219 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const skills = [
+	"Self-taught",
+	"Mathematics",
+	"Problem-solving",
+	"Competitive Programming",
+	"Algorithms and Data Structures",
+	"CTFs",
+	"Hard-working",
+	"Quick Learner",
+];
+
+const trophy = "🏆";
+const gold = "🥇";
+const silver = "🥈";
+const bronze = "🥉";
+
+const achievements = [
+	{
+		title: "Brazilian Math Olympiad",
+		year: "2020",
+		description: "Gold medal",
+		icon: gold,
+		certificate: "/OBM_2020_OURO.pdf",
+	},
+	{
+		title: "Brazilian Math Olympiad",
+		year: "2021",
+		description: "Silver medal",
+		icon: silver,
+		certificate: "/OBM_2021_PRATA.pdf",
+	},
+	{
+		title: "Brazilian Informatics Olympiad",
+		year: "2022",
+		description: "Gold medal and first place",
+		icon: trophy,
+		certificate: "/obi-ouro.pdf",
+	},
+	{
+		title: "ICPC Brazilian Finals",
+		year: "2025",
+		description: "Silver medal and eighth place",
+		icon: silver,
+		certificate: "/2026-ICPC SA Brazil-Miguel Oliveira-PLACE.pdf",
+	},
+];
+achievements.sort((a, b) => parseInt(b.year) - parseInt(a.year));
 ---
 
 <Layout>
-	About me
+	<section class="section container">
+		<div class="about-content glass">
+			<h1 class="text-gradient">About Me</h1>
+
+			<div class="bio">
+				<p>
+					I'm a computer science student and software developer with a
+					strong background in algorithms, competitive programming,
+					and systems-level development. I enjoy working close to the
+					fundamentals, whether that's implementing data structures
+					from scratch, studying low-level architectures, or building
+					efficient solutions to hard problems.
+				</p>
+				<p>
+					Besides that, I'm also interested in mathematics and
+					competitive math. I enjoy solving problems and learning new
+					things. I like puzzles and brain teasers.
+				</p>
+			</div>
+
+			<div class="skills-section">
+				<h2>My Main Skills</h2>
+				<ul class="skills-list">
+					{skills.map((skill) => <li>{skill}</li>)}
+				</ul>
+			</div>
+		</div>
+		<div class="spacer"></div>
+
+		<div class="about-content glass">
+			<h1 class="text-gradient">Achievements</h1>
+
+			<div class="achievements-grid">
+				{
+					achievements.map((achievement) => (
+						<a
+							href={achievement.certificate}
+							target="_blank"
+							class="achievement-card"
+						>
+							<div class="achievement-header">
+								<span class="achievement-icon">
+									{achievement.icon}
+								</span>
+								<span class="achievement-year">
+									{achievement.year}
+								</span>
+							</div>
+							<h3>{achievement.title}</h3>
+							<p>{achievement.description}</p>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	.about-content {
+		padding: 3rem;
+		border-radius: var(--radius-lg);
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		margin-bottom: 2rem;
+	}
+
+	.bio p {
+		margin-bottom: 1.5rem;
+		font-size: 1.1rem;
+		line-height: 1.8;
+	}
+
+	.skills-section {
+		margin-top: 3rem;
+	}
+
+	.skills-section h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1.5rem;
+		color: #fff;
+	}
+
+	.skills-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		gap: 1rem;
+		list-style: none;
+	}
+
+	.skills-list li {
+		position: relative;
+		padding-left: 1.5rem;
+		color: var(--color-text-muted);
+	}
+
+	.skills-list li::before {
+		content: "▹";
+		position: absolute;
+		left: 0;
+		color: var(--color-primary);
+	}
+
+	.achievements-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 1.5rem;
+		margin-top: 2rem;
+	}
+
+	.achievement-card {
+		background: rgba(46, 52, 64, 0.5); /* Nord0 with opacity */
+		padding: 1.5rem;
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-border);
+		transition: all 0.3s ease;
+		display: block; /* Ensure anchor behaves like a block */
+		text-decoration: none; /* Remove underline */
+		color: inherit; /* Inherit text color */
+	}
+
+	.achievement-card:hover {
+		transform: translateY(-5px);
+		border-color: #ebcb8b; /* Nord13 - Gold */
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	}
+
+	.achievement-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1rem;
+	}
+
+	.achievement-icon {
+		font-size: 1.5rem;
+	}
+
+	.achievement-year {
+		font-family: var(--font-mono);
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+		background: rgba(255, 255, 255, 0.05);
+		padding: 0.2rem 0.6rem;
+		border-radius: var(--radius-sm);
+	}
+
+	.achievement-card h3 {
+		font-size: 1.2rem;
+		color: #fff;
+		margin-bottom: 0.5rem;
+	}
+
+	.achievement-card p {
+		color: #d8dee9; /* Nord4 */
+		font-size: 1rem;
+		margin-bottom: 0;
+	}
+
+	.spacer {
+		height: 3rem;
+	}
+</style>
